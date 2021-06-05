@@ -10,10 +10,12 @@ namespace HRDepartment.Core.Context
     {
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeLog> EmployeeLog { get; set; }
 
         public HrDepartmentContext(DbContextOptions<HrDepartmentContext> dbContextOptions)
         {
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+           // Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,7 +29,18 @@ namespace HRDepartment.Core.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EmployeeLog>()
+                .HasKey(t => new {t.EmployeeId, t.DepartmentId});
+
+            modelBuilder.Entity<EmployeeLog>()
+                .HasOne(sc => sc.Department)
+                .WithMany(c => c.EmployeeLogs)
+                .HasForeignKey(t => t.DepartmentId);
             
+            modelBuilder.Entity<EmployeeLog>()
+                .HasOne(sc => sc.Employee)
+                .WithMany(c => c.EmployeeLogs)
+                .HasForeignKey(t => t.EmployeeId);
         }
     }
 }

@@ -5,3 +5,5 @@ obj/
 .idea/
 *.cache
 node_modules
+.vs/
+*.csproj.user

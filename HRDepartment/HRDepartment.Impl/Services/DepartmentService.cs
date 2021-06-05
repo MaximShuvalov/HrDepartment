@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using HRDepartment.Core.Services;
 using HRDepartment.Core.UnitOfWork;
 using HRDepartment.Model;
-using HRDepartment.Model.Api;
 
 namespace HRDepartment.Impl.Services
 {
     public sealed class DepartmentService : IDepartmentService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
+        private readonly IEmployeeLogService _employeeLogService;
 
-        public DepartmentService(IMapper mapper, IUnitOfWork unitOfWork)
+        public DepartmentService(IUnitOfWork unitOfWork, IEmployeeLogService employeeLogService)
         {
-            _mapper = mapper;
             _unitOfWork = unitOfWork;
+            _employeeLogService = employeeLogService;
         }
 
         public async Task Create(Department department)
         {
             if (department == null) throw new ArgumentException("Department is null");
+            if (department.EmployeeLogs.Any())
+                foreach (var item in department.EmployeeLogs)
+                    await _employeeLogService.Create(item);
             try
             {
                 using (_unitOfWork)
@@ -38,18 +39,12 @@ namespace HRDepartment.Impl.Services
             }
         }
 
-        public async Task<List<DepartmentDto>> GetAllDepartments()
+        public async Task<List<Department>> GetAllDepartments()
         {
-            List<Department> departments;
-            var departmentDtos = new List<DepartmentDto>();
             using (_unitOfWork)
             {
-                departments = await _unitOfWork.GetRepositories<Department>().GetAllAsync();
+                return await _unitOfWork.GetRepositories<Department>().GetAllAsync();
             }
-
-            foreach (var department in departments)
-                departmentDtos.Add(_mapper.Map<DepartmentDto>(department));
-            return departmentDtos;
         }
 
         public async Task Delete(Department department)
@@ -72,12 +67,12 @@ namespace HRDepartment.Impl.Services
             }
         }
 
-        public async Task<DepartmentDto> Get(long id)
+        public async Task<Department> Get(long id)
         {
             using (_unitOfWork)
             {
                 var department = await _unitOfWork.GetRepositories<Department>().Get(id);
-                return _mapper.Map<DepartmentDto>(department);
+                return department;
             }
         }
 
@@ -92,7 +87,7 @@ namespace HRDepartment.Impl.Services
             }
         }
 
-        public List<Employee> GetFiredEmployees(long keyDepartment)
+        public List<EmployeeLog> GetFiredEmployees(long keyDepartment)
         {
             Department department;
             using (_unitOfWork)
@@ -100,10 +95,10 @@ namespace HRDepartment.Impl.Services
                 department = _unitOfWork.GetRepositories<Department>().Get(keyDepartment).Result;
             }
 
-            return department.Employees.Where(p => p.Fired == true).ToList();
+            return department.EmployeeLogs.Where(p => p.Fired == true).ToList();
         }
 
-        public List<Employee> GetEmployees(long keyDepartment)
+        public List<EmployeeLog> GetEmployees(long keyDepartment)
         {
             Department department;
             using (_unitOfWork)
@@ -111,7 +106,35 @@ namespace HRDepartment.Impl.Services
                 department = _unitOfWork.GetRepositories<Department>().Get(keyDepartment).Result;
             }
 
-            return department.Employees.Where(p => p.Fired == false).ToList();
+            return department.EmployeeLogs.Where(p => p.Fired == false).ToList();
+        }
+
+        public async Task RecruitEmployee(Employee employee, Department department)
+        {
+            using (_unitOfWork)
+            {
+                var existDepartment = await _unitOfWork.GetRepositories<Department>().Get(department.Key);
+                await _employeeLogService.Create(new EmployeeLog()
+                {
+                    Department = existDepartment,
+                    Employee = employee
+                });
+                // existDepartment.EmployeeLogs.Add(new EmployeeLog()
+                // {
+                //     Department = existDepartment,
+                //     Employee = employee
+                // });
+                // await Update(existDepartment);
+            }
+        }
+
+        public async Task FireEmployee(long employeeKey, long departmentKey)
+        {
+            var department = await Get(departmentKey);
+            var empLog = department.EmployeeLogs.FirstOrDefault(p => p.Employee.Key.Equals(employeeKey));
+            empLog.Fired = true;
+            empLog.DateOfDismissal = DateTime.Now;
+            await Update(department);
         }
     }
 }

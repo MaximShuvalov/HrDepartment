@@ -11,52 +11,25 @@ namespace HRDepartment.Impl.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmployeeLogService _employeeLogService;
 
-        public EmployeeService(IUnitOfWork unitOfWork)
+        public EmployeeService(IUnitOfWork unitOfWork, IEmployeeLogService employeeLogService)
         {
             _unitOfWork = unitOfWork;
+            _employeeLogService = employeeLogService;
         }
 
         public async Task Create(Employee employee)
         {
             if (employee == null) throw new ArgumentException("Employee is null");
-            var allEmployees = await GetAllEmployees();
-            var existingEmployee = allEmployees.FirstOrDefault(p =>
-                p.PhoneNumber.Equals(employee.PhoneNumber) && p.Fio.Equals(employee.Fio));
-            if (existingEmployee == null)
+            if (employee.EmployeeLogs.Any())
+                foreach (var item in employee.EmployeeLogs)
+                    await _employeeLogService.Create(item);
+            using (_unitOfWork)
             {
-                using (_unitOfWork)
-                {
-                    await _unitOfWork.GetRepositories<Employee>().Create(employee);
-                    _unitOfWork.Commit();
-                }
+                await _unitOfWork.GetRepositories<Employee>().Create(employee);
+                _unitOfWork.Commit();
             }
-            else
-            {
-                if (existingEmployee.Fired)
-                    employee.Fired = false;
-                if (existingEmployee.Departments.Count == 2)
-                    throw new Exception("Невозможно устроить сотрудника больше,чем на 2, должности");
-
-                for (int i = 0; i <= employee.Departments.Count; i++)
-                {
-                    if (!existingEmployee.Departments.Contains(employee.Departments[i]) &&
-                        existingEmployee.Departments.Count < 2)
-                        existingEmployee.Departments.Add(employee.Departments[i]);
-                }
-
-                await Update(existingEmployee);
-            }
-        }
-
-        public async Task FireEmployee(Employee employee)
-        {
-            if (employee == null) throw new ArgumentException("Employee is null");
-            var allEmployees = await GetAllEmployees();
-            var existingEmployee = allEmployees.FirstOrDefault(p =>
-                p.PhoneNumber.Equals(employee.PhoneNumber) && p.Fio.Equals(employee.Fio));
-            existingEmployee.Fired = true;
-            await Update(existingEmployee);
         }
 
         public async Task<List<Employee>> GetAllEmployees()
@@ -90,5 +63,17 @@ namespace HRDepartment.Impl.Services
             using (_unitOfWork)
                 return await _unitOfWork.GetRepositories<Employee>().Get(id);
         }
+
+        public async Task<Employee> GetIfExistOrNull(Employee employee)
+        {
+            var employees = await GetAllEmployees();
+            return employees.FirstOrDefault(p =>
+                p.Fio.Equals(employee.Fio) && p.PhoneNumber.Equals(employee.PhoneNumber));
+        }
+
+        public async Task<bool> СheckIfIsPossibleRecruitEmployee(Employee employee) => await Task.Run(() =>
+        {
+            return employee.EmployeeLogs.All(p => p.Fired == false) && employee.EmployeeLogs.Count.Equals(2);
+        });
     }
 }

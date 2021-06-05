@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using HRDepartment.Model;
-using HRDepartment.Model.Api;
 
 namespace HRDepartment.Core.Services
 {
     public interface IDepartmentService
     {
         Task Create(Department department);
-        Task<List<DepartmentDto>> GetAllDepartments();
+        Task<List<Department>> GetAllDepartments();
         Task Delete(Department department);
         Task Update(Department department);
-        Task<DepartmentDto> Get(long id);
+        Task<Department> Get(long id);
         Task SetBoss(Employee employee, long idDepartment);
-        List<Employee> GetFiredEmployees(long keyDepartment);
-        List<Employee> GetEmployees(long keyDepartment);
+        List<EmployeeLog> GetFiredEmployees(long keyDepartment);
+        List<EmployeeLog> GetEmployees(long keyDepartment);
+        Task RecruitEmployee(Employee employee, Department department);
+        Task FireEmployee(long employeeKey, long departmentKey);
     }
 }

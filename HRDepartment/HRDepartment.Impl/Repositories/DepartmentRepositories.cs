@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using HRDepartment.Core.Context;
 using HRDepartment.Core.Repositories;
-using HRDepartment.Core.Services;
 using HRDepartment.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,14 +27,14 @@ namespace HRDepartment.Impl.Repositories
 
         public async Task<Department> Get(long id)
         {
-            return await _context.Departments.Include(c => c.Boss).FirstOrDefaultAsync(p => p.Key.Equals(id));
+            return await _context.Departments.Include(c => c.Boss).Include(p=> p.EmployeeLogs).ThenInclude(x=> x.Employee).FirstOrDefaultAsync(p => p.Key.Equals(id));
         }
 
         public Task Update(Department item) => Task.Run(() => _context.Departments.Update(item));
 
         public async Task<List<Department>> GetAllAsync() =>
-            await Task.Run(() => _context.Departments.Include(p => p.Boss).ToList());
+            await Task.Run(() => _context.Departments.Include(p => p.Boss).Include(p=> p.EmployeeLogs).ThenInclude(x=> x.Employee).ToList());
 
-        public List<Department> GetAll() => _context.Departments.Include(p => p.Boss).ToList();
+        public List<Department> GetAll() => _context.Departments.Include(p => p.Boss).Include(p=> p.EmployeeLogs).ThenInclude(x=> x.Employee).ToList();
     }
 }

@@ -23,13 +23,13 @@ namespace HRDepartment.Impl.Repositories
 
         public async Task<Employee> Get(long id)
         {
-            return await _context.Employees.FirstOrDefaultAsync(p => p.Key.Equals(id));
+            return await _context.Employees.Include(c=> c.EmployeeLogs).ThenInclude(p=> p.Department).FirstOrDefaultAsync(p => p.Key.Equals(id));
         }
 
         public async Task Update(Employee item) => await Task.Run(() => _context.Employees.Update(item));
 
-        public async Task<List<Employee>> GetAllAsync() => await Task.Run(() => _context.Employees.ToList());
+        public async Task<List<Employee>> GetAllAsync() => await Task.Run(() => _context.Employees.Include(c=> c.EmployeeLogs).ThenInclude(p=> p.Department).ToList());
 
-        public List<Employee> GetAll() => _context.Employees.ToList();
+        public List<Employee> GetAll() => _context.Employees.Include(c=> c.EmployeeLogs).ThenInclude(p=> p.Department).ToList();
     }
 }

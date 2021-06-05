@@ -27,9 +27,11 @@ namespace HRDepartment.Impl.UnitOfWork
                 return new DepartmentRepositories(_context) as IRepository<T>;
             else if (typeof(T) == typeof(Employee))
                 return new EmployeeRepositories(_context) as IRepository<T>;
+            else if (typeof(T) == typeof(EmployeeLog))
+                return new EmployeeLogRepository(_context) as IRepository<T>;
             throw new Exception();
         }
-        
+
         private bool _disposed = false;
 
         private void Dispose(bool disposing)
@@ -39,7 +41,7 @@ namespace HRDepartment.Impl.UnitOfWork
                 this._disposed = true;
             }
         }
- 
+
         public void Dispose()
         {
             Dispose(true);

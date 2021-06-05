@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using HRDepartment.Core.Services;
 using HRDepartment.Model;
@@ -27,15 +26,16 @@ namespace HRDepartment.Impl.Mapping
                 .ForAllOtherMembers(x => x.Ignore());
         }
 
-        private List<Employee> GetFiredEmployees(Department department) =>
+        private List<EmployeeLog> GetFiredEmployees(Department department) =>
             _departmentService.GetFiredEmployees(department.Key);
 
 
         private List<Employee> GetEmployee(Department department)
         {
             var employees = _departmentService.GetEmployees(department.Key);
-            employees.Add(department.Boss);
-            return employees;
+            var result = employees.Select(o=> o.Employee).ToList();
+            result.Add(department.Boss);
+            return result;
         }
     }
 }

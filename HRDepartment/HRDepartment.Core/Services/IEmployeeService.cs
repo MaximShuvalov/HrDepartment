@@ -11,7 +11,7 @@ namespace HRDepartment.Core.Services
         Task Delete(Employee employee);
         Task Update(Employee employee);
         Task<Employee> Get(long id);
-        Task FireEmployee(Employee employee);
-        
+        Task<Employee> GetIfExistOrNull(Employee employee);
+        Task<bool> СheckIfIsPossibleRecruitEmployee(Employee employee);
     }
 }
