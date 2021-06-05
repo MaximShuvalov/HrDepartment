@@ -1,0 +1,7 @@
+*.dll
+*.pdb
+bin/
+obj/
+.idea/
+*.cache
+node_modules
