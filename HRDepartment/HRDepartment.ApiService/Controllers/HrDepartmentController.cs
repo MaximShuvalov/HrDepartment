@@ -5,25 +5,23 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HRDepartment.Core.Services;
 using HRDepartment.Model;
-using HRDepartment.Model.Api;
+using HRDepartment.Model.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRDepartment.ApiService.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class HrDepartmentController : ControllerBase
     {
         private readonly IDepartmentService _departmentService;
-        private readonly IEmployeeLogService _employeeLogService;
         private readonly IEmployeeService _employeeService;
         private readonly IMapper _mapper;
 
-        public HomeController(IDepartmentService departmentService, IEmployeeLogService employeeLogService,
-            IEmployeeService employeeService, IMapper mapper)
+        public HrDepartmentController(IDepartmentService departmentService, IEmployeeService employeeService,
+            IMapper mapper)
         {
             _departmentService = departmentService;
-            _employeeLogService = employeeLogService;
             _employeeService = employeeService;
             _mapper = mapper;
         }
@@ -53,19 +51,8 @@ namespace HRDepartment.ApiService.Controllers
         public async Task Recruit(Employee employee, long departmentKey, string position)
         {
             if (string.IsNullOrWhiteSpace(position)) throw new ApplicationException("Не указана должность");
-            var existingEmployee = await _employeeService.GetIfExistOrNull(employee);
-            if (existingEmployee == null)
-            {
-                await _employeeService.Create(employee);
-                var createdEmployee = await _employeeService.GetIfExistOrNull(employee);
-                await _departmentService.RecruitEmployee(createdEmployee, await _departmentService.Get(departmentKey),
-                    position);
-            }
-            else if (!await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
-                await _departmentService.RecruitEmployee(employee, await _departmentService.Get(departmentKey),
-                    position);
-            else if (await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
-                throw new Exception("Невозможно устроить сотрудника больше чем в 2 отдела");
+            var department = await _departmentService.Get(departmentKey);
+            await _departmentService.RecruitEmployee(employee, department, position);
         }
 
         [HttpPost("Fire")]

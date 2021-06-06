@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using HRDepartment.Model;
-using HRDepartment.Model.Api;
+using HRDepartment.Model.DTO;
 
 namespace HRDepartment.Impl.Mapping
 {

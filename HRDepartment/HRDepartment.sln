@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDepartment.Impl", "HRDepa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRDepartment.ApiService", "HRDepartment.ApiService\HRDepartment.ApiService.csproj", "{4BE70D55-CE9F-4634-B08F-F7435913C8B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrDepartment.Tests", "HrDepartment.Tests\HrDepartment.Tests.csproj", "{6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{4BE70D55-CE9F-4634-B08F-F7435913C8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE70D55-CE9F-4634-B08F-F7435913C8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE70D55-CE9F-4634-B08F-F7435913C8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

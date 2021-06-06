@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HRDepartment.Model.Api
+﻿namespace HRDepartment.Model.DTO
 {
     public class ActiveEmployee
     {
