@@ -13,7 +13,7 @@ using Moq;
 using Moq.EntityFrameworkCore;
 using NUnit.Framework;
 
-namespace HrDepartment.Tests
+namespace HrDepartment.Tests.ServicesTest
 {
     public class DepartmentServiceTests
     {
@@ -93,7 +93,7 @@ namespace HrDepartment.Tests
 
             var assertDepartment = dbContext.Object.Departments.FirstOrDefault(x => x.Key.Equals(6676));
 
-            Assert.True(assertDepartment.EmployeeLogs.FirstOrDefault().Fired.Equals(true));
+            Assert.True(assertDepartment?.EmployeeLogs.FirstOrDefault()?.Fired.Equals(true));
         }
 
         [Test]

@@ -29,7 +29,7 @@ namespace HRDepartment.Impl.UnitOfWork
                 return new EmployeeRepositories(_context) as IRepository<T>;
             else if (typeof(T) == typeof(EmployeeLog))
                 return new EmployeeLogRepository(_context) as IRepository<T>;
-            throw new Exception();
+            throw new Exception("Unkown type");
         }
 
         private bool _disposed = false;

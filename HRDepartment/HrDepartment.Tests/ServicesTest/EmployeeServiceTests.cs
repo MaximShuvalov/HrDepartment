@@ -12,7 +12,7 @@ using Moq;
 using Moq.EntityFrameworkCore;
 using NUnit.Framework;
 
-namespace HrDepartment.Tests
+namespace HrDepartment.Tests.ServicesTest
 {
     public class EmployeeServiceTests
     {
