@@ -109,7 +109,7 @@ namespace HRDepartment.Impl.Services
             return department.EmployeeLogs.Where(p => p.Fired == false).ToList();
         }
 
-        public async Task RecruitEmployee(Employee employee, Department department)
+        public async Task RecruitEmployee(Employee employee, Department department, string position)
         {
             using (_unitOfWork)
             {
@@ -117,7 +117,8 @@ namespace HRDepartment.Impl.Services
                 await _employeeLogService.Create(new EmployeeLog()
                 {
                     Department = existDepartment,
-                    Employee = employee
+                    Employee = employee,
+                    Position = position
                 });
             }
         }

@@ -14,7 +14,7 @@ namespace HRDepartment.Core.Services
         Task SetBoss(Employee employee, long idDepartment);
         List<EmployeeLog> GetFiredEmployees(long keyDepartment);
         List<EmployeeLog> GetEmployees(long keyDepartment);
-        Task RecruitEmployee(Employee employee, Department department);
+        Task RecruitEmployee(Employee employee, Department department, string position);
         Task FireEmployee(long employeeKey, long departmentKey);
     }
 }

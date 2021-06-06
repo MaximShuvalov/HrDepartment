@@ -72,6 +72,9 @@ namespace HRDepartment.Core.Migrations
                     b.Property<long>("Key")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Position")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("EmployeeId", "DepartmentId");
 
                     b.HasIndex("DepartmentId");

@@ -6,5 +6,6 @@ namespace HRDepartment.Model.Api
     {
         public string Fio { get; set; }
         public string PhoneNumber { get; set; }
+        public string Position { get; set; }
     }
 }

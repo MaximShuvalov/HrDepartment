@@ -16,5 +16,6 @@ namespace HRDepartment.Model
         [ForeignKey("Department")]
         public long DepartmentId { get; set; }
         public Department Department { get; set; }
+        public string Position { get; set; }
     }
 }

@@ -50,17 +50,20 @@ namespace HRDepartment.ApiService.Controllers
         }
 
         [HttpPost("Recruit")]
-        public async Task Recruit(Employee employee, long departmentKey)
+        public async Task Recruit(Employee employee, long departmentKey, string position)
         {
+            if (string.IsNullOrWhiteSpace(position)) throw new ApplicationException("Не указана должность");
             var existingEmployee = await _employeeService.GetIfExistOrNull(employee);
             if (existingEmployee == null)
             {
                 await _employeeService.Create(employee);
                 var createdEmployee = await _employeeService.GetIfExistOrNull(employee);
-                await _departmentService.RecruitEmployee(createdEmployee, await _departmentService.Get(departmentKey));
+                await _departmentService.RecruitEmployee(createdEmployee, await _departmentService.Get(departmentKey),
+                    position);
             }
             else if (!await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
-                await _departmentService.RecruitEmployee(employee, await _departmentService.Get(departmentKey));
+                await _departmentService.RecruitEmployee(employee, await _departmentService.Get(departmentKey),
+                    position);
             else if (await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
                 throw new Exception("Невозможно устроить сотрудника больше чем в 2 отдела");
         }

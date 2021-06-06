@@ -15,7 +15,9 @@ namespace HRDepartment.Impl.Mapping
                 .ForMember(x => x.PhoneNumber,
                     x => x.MapFrom(m => m.Employee.PhoneNumber))
                 .ForMember(x => x.DateOfFired,
-                    x => x.MapFrom(m => m.DateOfDismissal));
+                    x => x.MapFrom(m => m.DateOfDismissal))
+                .ForMember(x => x.Position,
+                    x => x.MapFrom(m => m.Position));
             CreateMap<Department, DepartmentFullInfo>()
                 .ForMember(x => x.Name,
                     x => x.MapFrom(c => c.Name))
@@ -25,7 +27,8 @@ namespace HRDepartment.Impl.Mapping
                     x => x.MapFrom(m => m.EmployeeLogs.Select(l => new ActiveEmployee()
                     {
                         Fio = l.Employee.Fio,
-                        PhoneNumber = l.Employee.PhoneNumber
+                        PhoneNumber = l.Employee.PhoneNumber,
+                        Position = l.Position
                     })))
                 .ForMember(x => x.Boss,
                     x => x.MapFrom(m => m.Boss));
