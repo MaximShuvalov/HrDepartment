@@ -8,9 +8,9 @@ namespace HRDepartment.Core.Context
 {
     public class HrDepartmentContext : DbContext
     {
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeLog> EmployeeLog { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeLog> EmployeeLog { get; set; }
 
         public HrDepartmentContext(DbContextOptions<HrDepartmentContext> dbContextOptions)
         {

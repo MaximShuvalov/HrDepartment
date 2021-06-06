@@ -8,7 +8,7 @@ using HRDepartment.Model;
 
 namespace HRDepartment.Impl.Services
 {
-    public sealed class DepartmentService : IDepartmentService
+    public class DepartmentService : IDepartmentService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmployeeLogService _employeeLogService;
@@ -120,9 +120,9 @@ namespace HRDepartment.Impl.Services
                 var createdEmployee = await _employeeService.GetIfExistOrNull(employee);
                 await Recruit(employee, department, position);
             }
-            else if (!await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
-                await Recruit(employee, department, position);
             else if (await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
+                await Recruit(employee, department, position);
+            else if (!await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
                 throw new Exception("Невозможно устроить сотрудника больше чем в 2 отдела");
             
             

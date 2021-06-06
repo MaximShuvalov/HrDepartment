@@ -66,6 +66,7 @@ namespace HRDepartment.Impl.Services
 
         public async Task<Employee> GetIfExistOrNull(Employee employee)
         {
+            if (employee == null) throw new ArgumentException("Employee is null");
             var employees = await GetAllEmployees();
             return employees.FirstOrDefault(p =>
                 p.Fio.Equals(employee.Fio) && p.PhoneNumber.Equals(employee.PhoneNumber));
