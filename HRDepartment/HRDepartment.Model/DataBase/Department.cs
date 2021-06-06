@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HRDepartment.Model
+namespace HRDepartment.Model.DataBase
 {
     public class Department
     {

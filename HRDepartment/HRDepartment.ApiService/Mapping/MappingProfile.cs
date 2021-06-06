@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using HRDepartment.Model.DTO;
 
 namespace HRDepartment.Impl.Mapping

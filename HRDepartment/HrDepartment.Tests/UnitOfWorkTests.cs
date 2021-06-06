@@ -2,6 +2,7 @@
 using HRDepartment.Core.Repositories;
 using HRDepartment.Impl.UnitOfWork;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;

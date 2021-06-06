@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HRDepartment.Core.Services;
 using HRDepartment.Core.UnitOfWork;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 
 namespace HRDepartment.Impl.Services
 {

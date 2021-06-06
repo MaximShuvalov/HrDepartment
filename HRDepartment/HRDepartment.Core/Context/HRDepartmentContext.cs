@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

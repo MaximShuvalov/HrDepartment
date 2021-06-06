@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using HRDepartment.Impl.Mapping;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using HRDepartment.Model.DTO;
 using NUnit.Framework;
 

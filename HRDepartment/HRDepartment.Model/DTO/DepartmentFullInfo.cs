@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using HRDepartment.Model.DataBase;
 
 namespace HRDepartment.Model.DTO
 {

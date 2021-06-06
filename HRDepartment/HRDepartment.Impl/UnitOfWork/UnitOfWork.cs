@@ -4,6 +4,7 @@ using HRDepartment.Core.Repositories;
 using HRDepartment.Core.UnitOfWork;
 using HRDepartment.Impl.Repositories;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 
 namespace HRDepartment.Impl.UnitOfWork
 {

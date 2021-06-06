@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using HRDepartment.Core.Context;
 using HRDepartment.Core.Repositories;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRDepartment.Impl.Repositories

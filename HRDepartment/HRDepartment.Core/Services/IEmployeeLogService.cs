@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 
 namespace HRDepartment.Core.Services
 {

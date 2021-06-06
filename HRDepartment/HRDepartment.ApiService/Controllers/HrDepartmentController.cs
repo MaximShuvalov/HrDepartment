@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using HRDepartment.Core.Services;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using HRDepartment.Model.DTO;
 using Microsoft.AspNetCore.Mvc;
 

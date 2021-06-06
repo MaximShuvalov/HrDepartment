@@ -8,6 +8,7 @@ using HRDepartment.Core.UnitOfWork;
 using HRDepartment.Impl.Services;
 using HRDepartment.Impl.UnitOfWork;
 using HRDepartment.Model;
+using HRDepartment.Model.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Moq.EntityFrameworkCore;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace HRDepartment.Model
+namespace HRDepartment.Model.DataBase
 {
     public class Employee
     {
