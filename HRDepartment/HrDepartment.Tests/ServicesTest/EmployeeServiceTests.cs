@@ -182,7 +182,7 @@ namespace HrDepartment.Tests.ServicesTest
         }
         
         [Test]
-        public async Task СheckIfIsPossibleRecruitEmployee_ReturnTrue_Test()
+        public async Task СheckIfIsPossibleRecruitEmployee_ReturnFalse_Test()
         {
             var dbContext = new Mock<HrDepartmentContext>(new Mock<DbContextOptions<HrDepartmentContext>>().Object);
             var employees = new List<Employee>
@@ -212,11 +212,11 @@ namespace HrDepartment.Tests.ServicesTest
 
             var result = await employeeService.СheckIfIsPossibleRecruitEmployee(employees.First());
 
-            Assert.True(result.Equals(true));
+            Assert.True(result.Equals(false));
         }
         
         [Test]
-        public async Task СheckIfIsPossibleRecruitEmployee_ReturnFalse_Test()
+        public async Task СheckIfIsPossibleRecruitEmployee_ReturnTrue_Test()
         {
             var dbContext = new Mock<HrDepartmentContext>(new Mock<DbContextOptions<HrDepartmentContext>>().Object);
             var employees = new List<Employee>
@@ -246,7 +246,7 @@ namespace HrDepartment.Tests.ServicesTest
 
             var result = await employeeService.СheckIfIsPossibleRecruitEmployee(employees.First());
 
-            Assert.True(result.Equals(false));
+            Assert.True(result.Equals(true));
         }
     }
 }

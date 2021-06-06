@@ -50,8 +50,10 @@ namespace HRDepartment.ApiService.Controllers
         [HttpPost("Recruit")]
         public async Task Recruit(Employee employee, long departmentKey, string position)
         {
-            if (string.IsNullOrWhiteSpace(position)) throw new ApplicationException("Не указана должность");
+            if (string.IsNullOrWhiteSpace(position)) throw new ArgumentException("Не указана должность");
             var department = await _departmentService.Get(departmentKey);
+            if (department == null)
+                throw new ApplicationException($"Отдела с идентификатором {departmentKey} не существует");
             await _departmentService.RecruitEmployee(employee, department, position);
         }
 

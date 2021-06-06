@@ -24,7 +24,7 @@ namespace HRDepartment.Impl.IoC
                 .Build();
 
             serviceCollection.AddDbContext<HrDepartmentContext>(
-                options => options.UseSqlite(config.GetConnectionString("ConnectionDb"))
+                options => options.UseNpgsql(config.GetConnectionString("ConnectionDb"))
             );
 
             serviceCollection.AddTransient<IUnitOfWork, UnitOfWork.UnitOfWork>();

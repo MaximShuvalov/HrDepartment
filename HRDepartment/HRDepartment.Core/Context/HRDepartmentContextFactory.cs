@@ -15,7 +15,7 @@ namespace HRDepartment.Core.Context
                 .AddJsonFile("appsettings.json", false)
                 .Build();
             var builder = new DbContextOptionsBuilder<HrDepartmentContext>();
-            builder.UseSqlite(config.GetConnectionString("ConnectionDb"));
+            builder.UseNpgsql(config.GetConnectionString("ConnectionDb"));
             return new HrDepartmentContext(builder.Options);
         }
     }

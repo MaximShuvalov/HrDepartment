@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\HRDepartment.ApiService\HRDepartment.ApiService.csproj" />
       <ProjectReference Include="..\HRDepartment.Impl\HRDepartment.Impl.csproj" />
     </ItemGroup>
 

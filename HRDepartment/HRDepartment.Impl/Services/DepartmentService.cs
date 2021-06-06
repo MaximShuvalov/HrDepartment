@@ -14,7 +14,8 @@ namespace HRDepartment.Impl.Services
         private readonly IEmployeeLogService _employeeLogService;
         private readonly IEmployeeService _employeeService;
 
-        public DepartmentService(IUnitOfWork unitOfWork, IEmployeeLogService employeeLogService, IEmployeeService employeeService)
+        public DepartmentService(IUnitOfWork unitOfWork, IEmployeeLogService employeeLogService,
+            IEmployeeService employeeService)
         {
             _unitOfWork = unitOfWork;
             _employeeLogService = employeeLogService;
@@ -119,26 +120,28 @@ namespace HRDepartment.Impl.Services
                 await _employeeService.Create(employee);
                 var createdEmployee = await _employeeService.GetIfExistOrNull(employee);
                 await Recruit(employee, department, position);
+                return;
             }
-            else if (await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
-                await Recruit(employee, department, position);
-            else if (!await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee))
+
+            var isPossibleRecruitingEmployee =
+                await _employeeService.СheckIfIsPossibleRecruitEmployee(existingEmployee);
+            if (isPossibleRecruitingEmployee == true)
+                await Recruit(existingEmployee, department, position);
+            else
                 throw new Exception("Невозможно устроить сотрудника больше чем в 2 отдела");
-            
-            
         }
 
         private async Task Recruit(Employee employee, Department department, string position)
         {
             using (_unitOfWork)
             {
-                var existDepartment = await _unitOfWork.GetRepositories<Department>().Get(department.Key);
                 await _employeeLogService.Create(new EmployeeLog()
                 {
-                    Department = existDepartment,
+                    Department = department,
                     Employee = employee,
                     Position = position
                 });
+                _unitOfWork.Commit();
             }
         }
 

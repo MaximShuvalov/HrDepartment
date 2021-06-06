@@ -24,14 +24,11 @@ namespace HRDepartment.Core.Context
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .AddJsonFile("appsettings.json", false)
                 .Build();
-            optionsBuilder.UseSqlite(config.GetConnectionString("ConnectionDb"));
+            optionsBuilder.UseNpgsql(config.GetConnectionString("ConnectionDb"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<EmployeeLog>()
-                .HasKey(t => new {t.EmployeeId, t.DepartmentId});
-
             modelBuilder.Entity<EmployeeLog>()
                 .HasOne(sc => sc.Department)
                 .WithMany(c => c.EmployeeLogs)

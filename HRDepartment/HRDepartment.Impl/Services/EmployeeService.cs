@@ -74,7 +74,7 @@ namespace HRDepartment.Impl.Services
 
         public async Task<bool> СheckIfIsPossibleRecruitEmployee(Employee employee) => await Task.Run(() =>
         {
-            return employee.EmployeeLogs.All(p => p.Fired == false) && employee.EmployeeLogs.Count.Equals(2);
+            return !(employee.EmployeeLogs.All(p => p.Fired == false) && employee.EmployeeLogs.Count.Equals(2));
         });
     }
 }

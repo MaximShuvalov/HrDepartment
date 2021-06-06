@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace HRDepartment.Core.Migrations
 {
-    public partial class InitMigration : Migration
+    public partial class InitMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +13,7 @@ namespace HRDepartment.Core.Migrations
                 columns: table => new
                 {
                     Key = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Fio = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true)
                 },
@@ -26,7 +27,7 @@ namespace HRDepartment.Core.Migrations
                 columns: table => new
                 {
                     Key = table.Column<long>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     BossId = table.Column<long>(nullable: false)
@@ -46,15 +47,17 @@ namespace HRDepartment.Core.Migrations
                 name: "EmployeeLog",
                 columns: table => new
                 {
+                    Key = table.Column<long>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     EmployeeId = table.Column<long>(nullable: false),
-                    DepartmentId = table.Column<long>(nullable: false),
-                    Key = table.Column<long>(nullable: false),
                     Fired = table.Column<bool>(nullable: false),
-                    DateOfDismissal = table.Column<DateTime>(nullable: false)
+                    DateOfDismissal = table.Column<DateTime>(nullable: false),
+                    DepartmentId = table.Column<long>(nullable: false),
+                    Position = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeLog", x => new { x.EmployeeId, x.DepartmentId });
+                    table.PrimaryKey("PK_EmployeeLog", x => x.Key);
                     table.ForeignKey(
                         name: "FK_EmployeeLog_Departments_DepartmentId",
                         column: x => x.DepartmentId,
@@ -78,6 +81,11 @@ namespace HRDepartment.Core.Migrations
                 name: "IX_EmployeeLog_DepartmentId",
                 table: "EmployeeLog",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeLog_EmployeeId",
+                table: "EmployeeLog",
+                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,35 +1,4 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b40fbe83_002Ddc42_002D4928_002D9177_002D836f1beffe3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AddDepartmentWithoutEmployeeLogsTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.MappingTests.MappingDepartmentToDepartmentFullInfoTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.MappingTests.MappingEmployeeLogToFiredEmployeeTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests.СheckIfIsPossibleRecruitEmployeeTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests.FireEmployeeTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests.CreateDepartmentTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests.DeleteDepartmentTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests.DeleteDepartment_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.DepartmentServiceTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.CreateEmployeeTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.CreateEmployee_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.GetAllEmployeesTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.GetEmployeeTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.DeleteEmployee_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.UpdateEmployee_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.GetEmployee_ReturnEmployee_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.GetEmployee_ReturnNull_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.GetEmployee_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.СheckIfIsPossibleRecruitEmployee_ReturnFalse_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeServiceTests.СheckIfIsPossibleRecruitEmployee_ReturnTrue_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.CreateEmployeeLogTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.CreateEmployeeLog_ThrowException_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.GetAllEmployeeLogsTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.GetEmployeeLogTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.DeleteEmployeeLogTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.EmployeeLogServiceTests.UpdateEmployeeLogTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.UnitOfWorkTests.GetRepositories_ReturnDepartmentRepository_Test&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB::.NETCoreApp,Version=v3.1::HrDepartment.Tests.UnitOfWorkTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;ProjectFolder&gt;6FD2BD2C-EA6E-41F0-8362-28BE8B7214FB/d:ServicesTest&lt;/ProjectFolder&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;Project Location="C:\Users\mshuvalov\Desktop\HR Department\HRDepartment\HrDepartment.Tests" Presentation="&amp;lt;HrDepartment.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
