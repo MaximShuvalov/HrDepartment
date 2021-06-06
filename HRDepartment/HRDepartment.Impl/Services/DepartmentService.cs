@@ -119,12 +119,6 @@ namespace HRDepartment.Impl.Services
                     Department = existDepartment,
                     Employee = employee
                 });
-                // existDepartment.EmployeeLogs.Add(new EmployeeLog()
-                // {
-                //     Department = existDepartment,
-                //     Employee = employee
-                // });
-                // await Update(existDepartment);
             }
         }
 

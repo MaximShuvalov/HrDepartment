@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using HRDepartment.Core.Services;
 using HRDepartment.Model;
+using HRDepartment.Model.Api;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRDepartment.ApiService.Controllers
@@ -15,33 +17,36 @@ namespace HRDepartment.ApiService.Controllers
         private readonly IDepartmentService _departmentService;
         private readonly IEmployeeLogService _employeeLogService;
         private readonly IEmployeeService _employeeService;
+        private readonly IMapper _mapper;
 
         public HomeController(IDepartmentService departmentService, IEmployeeLogService employeeLogService,
-            IEmployeeService employeeService)
+            IEmployeeService employeeService, IMapper mapper)
         {
             _departmentService = departmentService;
             _employeeLogService = employeeLogService;
             _employeeService = employeeService;
+            _mapper = mapper;
         }
 
         [HttpGet("All")]
-        public async Task<IActionResult> Get()
+        public async Task<List<DepartmentDto>> Get()
         {
             var departments = await _departmentService.GetAllDepartments();
-            return Ok(departments.Select(o => o.Name).ToList());
+            return _mapper.Map<List<Department>, List<DepartmentDto>>(departments);
         }
 
         [HttpGet("Department")]
-        public async Task<Department> Get(long key)
+        public async Task<DepartmentFullInfo> Get(long key)
         {
-            return await _departmentService.Get(key);
+            return _mapper.Map<Department, DepartmentFullInfo>(await _departmentService.Get(key));
         }
 
         [HttpGet("Firedemployees")]
-        public async Task<List<EmployeeLog>> GetFiredEmployees(long key)
+        public async Task<List<FiredEmployee>> GetFiredEmployees(long key)
         {
             var department = await _departmentService.Get(key);
-            return department.EmployeeLogs.Where(p => p.Fired == true).ToList();
+            return _mapper.Map<List<EmployeeLog>, List<FiredEmployee>>(department.EmployeeLogs
+                .Where(p => p.Fired == true).ToList());
         }
 
         [HttpPost("Recruit")]
